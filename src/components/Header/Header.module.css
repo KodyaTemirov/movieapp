@@ -1,0 +1,15 @@
+.header {
+	background-color: rgb(20, 20, 20);
+}
+.logo {
+	margin-right: 12px;
+}
+.logo img {
+	width: 93px;
+}
+
+.headerContainer {
+	display: flex;
+	height: 68px;
+	align-items: center;
+}
