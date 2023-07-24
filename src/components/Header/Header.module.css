@@ -2,14 +2,21 @@
 	background-color: rgb(20, 20, 20);
 }
 .logo {
-	margin-right: 12px;
+	margin-right: 40px;
 }
 .logo img {
-	width: 93px;
+	width: 120px;
 }
 
 .headerContainer {
 	display: flex;
 	height: 68px;
 	align-items: center;
+	justify-content: space-between;
+}
+.headerLeft {
+	display: flex;
+	align-items: center;
+}
+.children {
 }

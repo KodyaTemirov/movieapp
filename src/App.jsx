@@ -1,31 +1,57 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import s from './App.module.css'
-import { Header, Container } from './components'
+import { Header, Container, Card, Input } from './components'
 import axios from 'axios'
-
+import clsx from 'clsx'
 function App() {
-	const [input, setInput] = useState('')
+	const [input, setInput] = useState('titanic')
 	const [data, setData] = useState('')
 
+	useEffect(() => {
+		return () => {
+			getData(input)
+		}
+	}, [])
+
 	const inputChange = e => {
-		// setInput(e.target.value)
+		setInput(e.target.value)
+	}
+
+	const getData = value => {
 		axios
-			.get(`http://www.omdbapi.com/?s=${e.target.value}&apikey=a4159f8b`)
-			.then(data => {
-				setData(data?.data)
+			.get(`http://www.omdbapi.com/?s=${value}&apikey=a4159f8b`)
+			.then(({ data }) => {
+				setData(data)
 			})
 	}
 
-	const clickHandler = () => {}
+	const onEnter = ({ code }) => {
+		if (code === 'Enter') {
+			getData(input)
+		}
+	}
 
 	return (
 		<>
-			<Header />
+			<Header>
+				<Input type='text' onChange={inputChange} onKeyDown={onEnter} />
+			</Header>
 			<Container>
-				<input type='text' onChange={inputChange} />
-				<button onClick={clickHandler}>Click</button>
-
-				{data.Search && data.Search.map(item => <li>{item.Title}</li>)}
+				<div className={clsx(s.cards, s.mainContainer)}>
+					{data.Search &&
+						data.Search.map(({ Title, Poster, imdbID, Year, Type }, index) => {
+							return (
+								<Card
+									title={Title}
+									poster={Poster}
+									id={imdbID}
+									key={imdbID}
+									year={Year}
+									type={Type}
+								/>
+							)
+						})}
+				</div>
 			</Container>
 		</>
 	)

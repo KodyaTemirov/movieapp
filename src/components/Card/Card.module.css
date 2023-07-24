@@ -1,0 +1,16 @@
+.card {
+	border-radius: 12px;
+	background: rgba(32, 40, 62, 0.8);
+	backdrop-filter: blur(40px);
+	padding: 8px;
+	width: calc(25% - 34px);
+}
+
+.poster {
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.footer {
+	color: white;
+}

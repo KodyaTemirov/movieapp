@@ -2,14 +2,18 @@ import s from './Header.module.css'
 import Logo from '/logo.svg'
 import { Nav, Container } from '@components'
 
-const Header = () => {
+const Header = ({ children }) => {
 	return (
 		<header className={s.header}>
 			<Container className={s.headerContainer}>
-				<div className={s.logo}>
-					<img src={Logo} alt='' />
+				<div className={s.headerLeft}>
+					<div className={s.logo}>
+						<img src={Logo} alt='' />
+					</div>
+					<Nav />
 				</div>
-				<Nav />
+
+				<div className={s.children}> {children}</div>
 			</Container>
 		</header>
 	)
